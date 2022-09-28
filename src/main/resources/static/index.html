@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <head>
+        <title>Blueprints</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="/webjars/jquery/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/app.js"></script>
+        <link rel="stylesheet"
+              href="/webjars/bootstrap/3.3.7/css/bootstrap.min.css" />
+    </head>
+</head>
+<body>
+    <div class="topbar">
+        <h2 class="title">Blueprints</h2>
+    </div>
+    <form action="/stocks">
+        <label for="name">Author name:</label><br>
+        <input type="text" id="name" name="name" value="Diego"><br><br>
+        <div>
+            <input type="button" value="Get Blueprints" onclick="author.getBlueprints()">
+        </div>
+    </form>
+
+    <table id="table" style="display: none">
+        <tr class="table-header">
+            <th>Blueprint name</th>
+            <th>Number of points</th>
+        </tr>
+    </table>
+</body>
+</html>
