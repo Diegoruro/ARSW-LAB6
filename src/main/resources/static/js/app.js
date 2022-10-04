@@ -2,35 +2,38 @@ var author = (function () {
 
   return{
     getBlueprints : function () {
-        let author = document.getElementById("name").value;
+        let author = document.getElementById('name').value;
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function () {
-            let table = document.getElementById("table");
-            let json = JSON.parse(this.responseText);
-            table.style.display = "";
-            let mainData = json[Object.keys(json)[1]];
-            let num = 0;
-            for (key in mainData) {
-                let row = `<tr class="row">
-                                                                                  <td>${key}</td>
-                                                                                  <td>${mainData[key]["1. open"]}</td>
-                                                                                  <td>${mainData[key]["2. high"]}</td>
-                                                                                  <td>${mainData[key]["3. low"]}</td>
-                                                                                  <td>${mainData[key]["4. close"]}</td>
-                                                                                  <td>${mainData[key]["5. volume"]}</td>
-                                                                        </tr>`
+            let table = document.getElementById('table');
+            var responseText = this.responseText;
+            console.log('res')
+            console.log(responseText);
+            let json = JSON.parse(responseText);
+            console.log(json);
+            table.style.display = '';
+            for (key in json) {
+                console.log(responseText);
+                let row = `<tr class='row'>
+                              <td>${json[key]['name']}</td>
+                              <td>${json[key]['points'].length}</td>
+                              <td><input type='button' value='Open' onclick='drawBlueprint( ${key}, ${responseText})'></td>
+                            </tr>`
                 table.innerHTML += row;
-                num++;
             }
         }
-        xhttp.open("GET", "/blueprints/"+ author)
+        xhttp.open('GET', '/blueprints/'+ author)
         xhttp.send();
     }
   };
 
-  return{
-      buildTable : function (json){
-              console.log(json)
-          }
-  };
 })();
+
+var drawBlueprint = function (index, responseText) {
+    //let json = JSON.parse(responseText);
+    console.log(responseText);
+    console.log(index);
+    let canvas = document.getElementById('canva');
+    canvas.style['display'] = 'flex';
+
+  };
