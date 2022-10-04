@@ -38,6 +38,9 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         Point[] pts3=new Point[]{new Point(170, 134),new Point(120, 193)};
         Blueprint bp3=new Blueprint("Juan", "prueba3",pts3);
         blueprints.put(new Tuple<>(bp3.getAuthor(),bp3.getName()), bp3);
+        Point[] pts4=new Point[]{new Point(10, 3),new Point(100, 20),new Point(70, 100),new Point(50, 25)};
+        Blueprint bp4=new Blueprint("Diego", "prueba4",pts4);
+        blueprints.put(new Tuple<>(bp4.getAuthor(),bp4.getName()), bp4);
         
     }    
     
@@ -54,6 +57,12 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
     @Override
     public Blueprint getBlueprint(String author, String bprintname) throws BlueprintNotFoundException {
         return blueprints.get(new Tuple<>(author, bprintname));
+    }
+
+    @Override
+    public Set<Blueprint> deleteBlueprint(String author, String bprintname) throws BlueprintNotFoundException {
+        blueprints.remove(new Tuple<>(author, bprintname));
+        return getBlueprintsByAuthor(author);
     }
 
     @Override

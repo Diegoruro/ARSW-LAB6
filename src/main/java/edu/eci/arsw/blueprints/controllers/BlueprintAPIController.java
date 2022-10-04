@@ -82,5 +82,15 @@ public class BlueprintAPIController {
             return new ResponseEntity<>("Error bla bla bla", HttpStatus.NOT_FOUND);
         }
     }
+    @RequestMapping(path = "/{author}/{name}",method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> deleteBlueprint(@PathVariable String author,@PathVariable String name) {
+        try {
+            Set<Blueprint> data = blueprintsServices.deleteBlueprint(author,name);
+            return new ResponseEntity<>(new Gson().toJson(data), HttpStatus.OK);
+        } catch (Exception ex) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error bla bla bla", HttpStatus.NOT_FOUND);
+        }
+    }
 }
 
